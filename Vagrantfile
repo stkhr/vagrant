@@ -15,6 +15,5 @@ Vagrant.configure(2) do |config|
 
   # Initial startup, running script
   config.vm.provision :shell, :path => "install.sh"
-  end
 
 end
