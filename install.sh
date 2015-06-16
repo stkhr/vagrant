@@ -10,6 +10,9 @@ systemctl stop firewalld
 systemctl disable firewalld
 groupadd addusers
 gpasswd -a vagrant addusers
+## Don't update
+sed -i 's/UPDATEDEFAULT=yes/UPDATEDEFAULT=no/g' /etc/sysconfig/kernel
+echo exclude=kernel* centos* >> /etc/yum.conf
 
 #yum
 yum -y install epel-release
