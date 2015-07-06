@@ -1,16 +1,26 @@
 #
-#centos7 install shell
-#
+#centos install shell
+#ver6 ver7 
 
-#initialize
+### initialize ###
+##timezone
+#centos7
 cp /usr/share/zoneinfo/Japan /etc/localtime
+#centos6
+#ln -sf  /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
+
+##SeLinux
 setenforce 0
 sed -i 's/enforcing/disabled/g' /etc/sysconfig/selinux
+
+##firewalld stop (centos7)
 systemctl stop firewalld
 systemctl disable firewalld
+
+##group define
 groupadd addusers
 gpasswd -a vagrant addusers
-## Don't update
+##Don't update
 sed -i 's/UPDATEDEFAULT=yes/UPDATEDEFAULT=no/g' /etc/sysconfig/kernel
 echo exclude=kernel* centos* >> /etc/yum.conf
 
